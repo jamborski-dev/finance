@@ -16,15 +16,19 @@ const TransactionForm = ({ hideForm }) => {
     <form
       onSubmit={handleSubmit(onFormSubmit)}
       id="add-transaction-form"
-      className="add-transaction-form"
     >
+      <h4>Add new transaction</h4>
+      <div
+      className="add-transaction-form"
+      >
+
       <div className="form-group">
         <label htmlFor="datetime">Date/Time</label>
         <input type="datetime-local" {...register("datetime")} id="datetime" required />
       </div>
       <div className="form-group">
         <label htmlFor="name">Name</label>
-        <input type="text" {...register("name")} id="name" defaultValue="" />
+        <input type="text" {...register("name")} placeholder="Dinner shopping.. " id="name" defaultValue="" />
       </div>
       <div className="form-group">
         <label htmlFor="who">Who</label>
@@ -36,8 +40,18 @@ const TransactionForm = ({ hideForm }) => {
           ))}
         </select>
       </div>
+        <div className="radio-group">
+          <span>
+            <input id="expense" {...register("type", { required: true })} type="radio" value="expense" />
+            <label htmlFor="type">Expense</label>
+          </span>
+          <span>
+            <input id="income" {...register("type", { required: true })} type="radio" value="income" />
+            <label htmlFor="income">Income</label>
+          </span>
+      </div>
       <div className="form-group">
-        <label htmlFor="value">Value</label>
+        <label htmlFor="value">Value (£)</label>
         <input type="number" {...register("value")} id="value" min="0.01" step="0.01" required />
       </div>
       <div className="form-group">
@@ -50,13 +64,16 @@ const TransactionForm = ({ hideForm }) => {
           ))}
         </select>
       </div>
-      <button type="submit">Save</button>
-      <button type="button" disabled>
-        Clear
-      </button>
-      <button type="button" onClick={() => hideForm()}>
-        Cancel
-      </button>
+      </div>
+      <div className="btn-group">
+        <button type="submit">Save</button>
+        <button type="button" disabled>
+          Clear
+        </button>
+        <button type="button" onClick={() => hideForm()}>
+          Cancel
+        </button>
+      </div>
     </form>
   )
 }

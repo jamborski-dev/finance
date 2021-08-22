@@ -23,14 +23,13 @@ export const DataProvider = ({ children }) => {
     return user[0].name
   }
 
-  // TODO: add transaction types (checkbox in a form)
   const addTransaction = _data => {
     setTransactions(prevState => [
       ...prevState,
       {
         id: prevState.length + 1,
         name: _data.name,
-        type: "expense",
+        type: _data.type,
         userId: parseInt(_data.who),
         categoryId: parseInt(_data.category),
         value: _data.value

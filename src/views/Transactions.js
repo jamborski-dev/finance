@@ -32,7 +32,7 @@ const Transactions = () => {
           <select name="sorting">
             <option value="date">date</option>
             <option value="user">user</option>
-            <option value="transaction-value">transaction value</option>
+            <option value="transaction-value">value</option>
           </select>
         </div>
         <div className="form-group">

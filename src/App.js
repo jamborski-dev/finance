@@ -70,13 +70,13 @@ function App() {
       <main className="Content">
         <Switch>
           <Route exact path="/">
-            {/* <Overview /> */}
+            <Overview />
           </Route>
           <Route exact path="/transactions">
             <Transactions />
           </Route>
           <Route exact path="/standing-orders">
-            {/* <StandingOrders /> */}
+            <StandingOrders />
           </Route>
         </Switch>
       </main>

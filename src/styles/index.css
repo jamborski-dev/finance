@@ -93,6 +93,12 @@ button:disabled {
   pointer-events: none;
 }
 
+.btn-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem; 
+}
+
 input,
 select {
   padding: 0.5em 1em;
@@ -257,4 +263,27 @@ tr:not(thead tr):hover {
 
 .form-group select {
   padding-left: 0.7em;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  margin-right: .5em;
+}
+
+.radio-group span {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.radio-group label {
+  padding-left: 0.2em;
+}
+.radio-group * {
+  cursor: pointer;
+}
+
+.add-transaction-form #value {
+  width: 6rem;
 }
