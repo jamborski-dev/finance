@@ -4,7 +4,7 @@ import TransactionForm from "../components/TransactionForm"
 
 const Transactions = () => {
   const {
-    state: { transactionsState, categoriesState, usersState },
+    state: { transactionsState },
     actions: { getCategoryName, getUserName }
   } = useData()
 
