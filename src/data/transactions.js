@@ -4,7 +4,7 @@ export const transactions = {
       id: 0,
       userId: 0,
       name: "polish shop",
-      value: 32.1,
+      value: -32.1,
       type: "expense",
       categoryId: 0
     },
@@ -12,7 +12,7 @@ export const transactions = {
       id: 1,
       userId: 0,
       name: "fuel",
-      value: 42.2,
+      value: -42.2,
       type: "expense",
       categoryId: 1
     },
@@ -20,7 +20,7 @@ export const transactions = {
       id: 2,
       userId: 1,
       name: "tesco",
-      value: 19.93,
+      value: -19.93,
       type: "expense",
       categoryId: 0
     },
@@ -44,7 +44,7 @@ export const transactions = {
       id: 5,
       userId: 0,
       name: "polish shop",
-      value: 12.4,
+      value: -12.4,
       type: "expense",
       categoryId: 0
     },
@@ -52,7 +52,7 @@ export const transactions = {
       id: 6,
       userId: 0,
       name: "fuel",
-      value: 25.0,
+      value: -25.0,
       type: "expense",
       categoryId: 1
     },
@@ -60,7 +60,7 @@ export const transactions = {
       id: 7,
       userId: 1,
       name: "tesco",
-      value: 19.93,
+      value: -19.93,
       type: "expense",
       categoryId: 0
     },
@@ -76,7 +76,7 @@ export const transactions = {
       id: 9,
       userId: 0,
       name: "adobe",
-      value: 29.98,
+      value: -29.98,
       type: "expense",
       categoryId: 4
     }

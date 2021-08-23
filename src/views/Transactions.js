@@ -1,14 +1,86 @@
 import { useState } from "react"
+import MUIDataTable from "mui-datatables"
+
 import useData from "../hooks/useData"
 import TransactionForm from "../components/TransactionForm"
+import { users } from "../data/users"
 
 const Transactions = () => {
   const {
     state: { transactionsState },
-    actions: { getCategoryName, getUserName }
+    actions: { getCategoryName, getUserName, getUserColor }
   } = useData()
 
-  const [showTransactionForm, setTransactionForm] = useState(true)
+  const [showTransactionForm, setTransactionForm] = useState(false)
+
+
+  const options = {
+    filterType: 'checkbox',
+  }
+
+  const columns = [
+    { 
+      name: "date",
+      label: "Date",
+      options: {
+        filter: true,
+        sort: true,
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return "20/03/2021"
+        }
+      }
+    },
+    { 
+      name: "name",
+      label: "Name",
+      options: {
+        filter: true,
+        sort: true,
+      }
+    },
+    { 
+      name: "userId",
+      label: "Who",
+      options: {
+        filter: true,
+        sort: true,
+        customBodyRender: (value, tableMeta, updateValue) => {
+          const userName = getUserName(value)
+          const userColor = getUserColor(value)
+          return <div className={`user-name user-dot user-dot__${userColor}`}>{userName}</div>
+        }
+      }
+    },
+    { 
+      name: "value",
+      label: "Value",
+      options: {
+        filter: true,
+        sort: true,
+        customBodyRender: (value, tableMeta, updateValue) => {
+          const nf = new Intl.NumberFormat('en-GB', {
+            style: 'currency',
+            currency: 'GBP',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+          })
+
+          return <span className={value > 0 ? 'transaction-type--income' : 'transaction-type--expense'}>{nf.format(value)}</span>
+        }
+      }
+    },
+    { 
+      name: "categoryId",
+      label: "Category",
+      options: {
+        filter: true,
+        sort: true,
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return getCategoryName(value)
+        }
+      }
+    },
+  ]
 
   const hideForm = () => {
     setTransactionForm(false)
@@ -16,68 +88,21 @@ const Transactions = () => {
 
   return (
     <>
-      <h2>Transactions List</h2>
       <header className="table-tools">
         <button className="table-tool" onClick={() => setTransactionForm(true)}>
-          Add
+          Add transaction
         </button>
         <button className="table-tool" disabled>
-          Edit
+          Edit selected
         </button>
-        <button className="table-tool" disabled>
-          Delete
-        </button>
-        <div className="form-group">
-          <label htmlFor="sorting">Sort by</label>
-          <select name="sorting">
-            <option value="date">date</option>
-            <option value="user">user</option>
-            <option value="transaction-value">value</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label htmlFor="user-filter">Show</label>
-          <select name="user-filter">
-            <option value="all">All</option>
-            <option value="rob">Rob</option>
-            <option value="zuza">Zuza</option>
-          </select>
-        </div>
       </header>
       {showTransactionForm && <TransactionForm hideForm={hideForm} />}
-      <table>
-        <thead>
-          <tr>
-            <td></td>
-            <td>Date</td>
-            <td>Name</td>
-            <td>Who</td>
-            <td>Value</td>
-            <td>Category</td>
-          </tr>
-        </thead>
-        <tbody>
-          {transactionsState.map(item => (
-            <tr key={item.id}>
-              <td>
-                <input type="checkbox" name={item.id} />
-              </td>
-              <td>29/03/2021</td>
-              <td>{item.name}</td>
-              <td>{getUserName(item.userId)}</td>
-              <td
-                className={`${
-                  item.type === "expense" ? "transaction-type--expense" : "transaction-type--income"
-                }`}
-              >
-                <span className="transaction-sign">{item.type === "expense" ? "-" : "+"}</span> £
-                {item.value}
-              </td>
-              <td>{getCategoryName(item.categoryId)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <MUIDataTable
+        title={"Transactions List"}
+        data={transactionsState}
+        columns={columns}
+        options={options}
+      />
     </>
   )
 }

@@ -296,3 +296,36 @@ tr:not(thead tr):hover {
 .add-transaction-form #value {
   width: 6rem;
 }
+
+
+/* user indicator */
+
+.user-dot {
+  --color: rgb(107, 107, 107);
+  --size: 10px;
+  position: relative;
+  display: block;
+}
+
+.user-dot::before {
+  content: " ";
+  position: absolute;
+  display: block;
+  width: var(--size);
+  height: var(--size);
+
+  background-color: var(--color);
+  border-radius: 50%;
+
+  top: 50%;
+  left: -1.2em;
+  transform: translateY(-50%);
+}
+
+.user-dot__blue {
+  --color: rgb(34, 74, 255);
+}
+
+.user-dot__yellow {
+  --color: rgb(211, 190, 0);
+}

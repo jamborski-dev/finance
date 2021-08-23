@@ -23,6 +23,11 @@ export const DataProvider = ({ children }) => {
     return user[0].name
   }
 
+  const getUserColor = _userId => {
+    const user = usersState.filter(item => item.id === _userId)
+    return user[0].color
+  }
+
   const addTransaction = _data => {
     setTransactions(prevState => [
       ...prevState,
@@ -49,6 +54,7 @@ export const DataProvider = ({ children }) => {
         actions: {
           getCategoryName,
           getUserName,
+          getUserColor,
           addTransaction
         }
       }}
